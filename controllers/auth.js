@@ -10,9 +10,9 @@ we are goin to create registration system using JWT
 */
 //  register route api/registration
 exports.register = asyncHandler (async (req, res) => {
-    const {reg, department, password, email } = req.body
+    const {reg, department, password,userType, email } = req.body
     console.log(req.body)
-    if(!reg || !department || !password || !email){
+    if(!reg || !department || !password || !email || !userType){
         res.status(400).json({
             msg: "Please provide valid credential.."
         })
@@ -30,13 +30,15 @@ exports.register = asyncHandler (async (req, res) => {
         reg,
         department, 
         password:hashPassword, 
-        email
+        email,
+        userType
     })
     if(user){
         res.status(201).json({
             reg,
             email,
-            department,           
+            department,
+            userType           
         })
     }else{
         res.status(100).json({
@@ -76,7 +78,8 @@ exports.home = asyncHandler (async (req, res) => {
     id:_id,
     reg,
     email,
-    department
+    department,
+    userType
    })
 })
 // create token generating functions

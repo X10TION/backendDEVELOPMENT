@@ -55,7 +55,6 @@ exports.viewsLecture = (req, res) =>{
 
 // get single resource 
 exports.joinLecture = (req, res) => {
-    
     const { slug } = req.params
     console.log(req.params.slug)
     const { student, department, reg} = req.body
