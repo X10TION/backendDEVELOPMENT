@@ -4,7 +4,7 @@ const slugify = require('slugify')
 exports.createLecture = (req, res) =>{
 //    console.log(req.body)
     const { courseTitle, courseCode, department, fixedlecturetime} = req.body
-    const slug = slugify(courseTitle)
+    const slug = slugify(courseCode)
     // validate 
     switch(true){
         case !courseTitle:

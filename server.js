@@ -20,9 +20,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(cookieParser())
-
-
-
+app.use('./uploads', express.static('uploads'))
 // importation of router line 7
 app.use('/api',  resourcRoutes)
 app.use('/api',  authRoutes)
