@@ -73,7 +73,7 @@ exports.login = asyncHandler (async (req, res) => {
 // @access private
 //  register route api/home
 exports.home = asyncHandler (async (req, res) => {
-   const { _id, reg, email, department } = await User.findById(req.user.id)
+   const { _id, reg, email, department, userType} = await User.findById(req.user.id)
    res.status(200).json({
     id:_id,
     reg,

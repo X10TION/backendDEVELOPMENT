@@ -38,8 +38,23 @@ const lectureSchema = new mongoose.Schema({
         },
         reg:{
             type:String
-        }
-    }
+        },
+    },
+
+    classtype:{
+        type: String,
+        default: "public"
+    },
+    createSingleLecture:{
+        title:{
+            type:String
+        },
+        description:{
+            type:String
+        },
+    },
+
+
 },{
     timestamps: true
 })
