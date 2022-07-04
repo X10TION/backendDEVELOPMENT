@@ -5,11 +5,10 @@ const User = require('../model/users')
 
 const protect = asyncHandler(async (req, res, next) =>{
     let Token
-    if(req.headers.authorization || req.headers.authorization.startsWith('Bearer')){
+    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         try{
             // get token from the header
-            Token =req.headers.authorization
-            // .split(' ')[1]
+            Token =req.headers.authorization.split(' ')[1]
             // varify the token
             const decoded = jwt.verify(Token,"nhgjffjgyfuyyugyufhfd")
             // get user from the token
