@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
         type:String
     },
     userType:{
-        type: Strring,
+        type: String,
         default:"publice"
     },
     email:{
