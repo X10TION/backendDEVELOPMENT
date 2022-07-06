@@ -62,7 +62,7 @@ exports.login = asyncHandler (async (req, res) => {
             _id:user._id,
             reg: user.reg,
             email: user.email,
-            department:department,
+            department:user.department,
             acounttype:user.acounttype,
             fullname: user.fullname,
             token:generateToken(user._id)
