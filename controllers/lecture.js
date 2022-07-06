@@ -45,7 +45,7 @@ exports.createLecture = (req, res) =>{
 }
 // get all resource 
 exports.viewsLecture = (req, res) =>{
-    Lecture.find({}).limit(50).sort({createAt: -1}).exec((err, posts) =>{
+    Lecture.find({}).limit(50).sort({createAt: 1}).exec((err, posts) =>{
         if(err) console.log(err);
         res.json(posts)
     })
@@ -56,9 +56,10 @@ exports.joinLecture = (req, res) => {
     const { slug } = req.params
     const { student, department, reg } = req.body
     
-    Lecture.findOneAndupdate({slug},
-        {student, department, reg},
-        {upset: true})
+    Lecture.findOneAndUpdate({slug},{slug}).exec((err,post) => {
+            if(err) console.log(err)
+            res.json(post)
+        })
     
 }
 // update resource
