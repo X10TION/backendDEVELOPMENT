@@ -10,7 +10,7 @@ we are goin to create registration system using JWT
 */
 //  register route api/registration
 exports.register = asyncHandler (async (req, res) => {
-    const {reg, department, password,userType, email } = req.body
+    const {reg, department, password,acounttype, email } = req.body
     console.log(req.body)
     if(!reg || !department || !password || !email || !userType){
         res.status(400).json({
@@ -31,14 +31,14 @@ exports.register = asyncHandler (async (req, res) => {
         department, 
         password:hashPassword, 
         email,
-        userType
+        acounttype
     })
     if(user){
         res.status(201).json({
             reg,
             email,
             department,
-            userType           
+            acounttype           
         })
     }else{
         res.status(100).json({
@@ -51,15 +51,16 @@ exports.register = asyncHandler (async (req, res) => {
 // @access public
 //  register route api/registration
 exports.login = asyncHandler (async (req, res) => {
-   const {reg, password} = req.body
+   const {reg, password } = req.body
 //    console.log(req.body)
 // check for user reg
     const user = await User.findOne({reg})
     if(user && (await bcrypt.compare(password, user.password))){
-        res.json({
+        res.status(201).json({
             _id:user._id,
             reg: user.reg,
             email: user.email,
+            acounttype:user.acounttype,
             token:generateToken(user._id)
         })
     }else{
@@ -72,14 +73,14 @@ exports.login = asyncHandler (async (req, res) => {
 // @route GET  api/home
 // @access private
 //  register route api/home
-exports.home = asyncHandler (async (req, res) => {
+exports.profile = asyncHandler (async (req, res) => {
    const { _id, reg, email, department, userType} = await User.findById(req.user.id)
    res.status(200).json({
     id:_id,
     reg,
     email,
     department,
-    userType
+    acounttype
    })
 })
 // create token generating functions

@@ -6,8 +6,8 @@ const { protect } = require('../middleware/authChecker')
 
 router.post('/LectureRoom', protect,createLecture)
 router.get('/LectureRoom', protect, viewsLecture)
-router.post('/LectureRoom/:lectureroom',protect, joinLecture)
-router.put('/LectureRoom/:lectureroom', protect,updateLecture)
-router.delete('/LectureRoom/:lectureroom', protect, removeLecture)
+router.post('/LectureRoom/:slug',protect, joinLecture)
+router.put('/LectureRoom/:slug', protect,updateLecture)
+router.delete('/LectureRoom/:slug', protect, removeLecture)
 
 module.exports = router

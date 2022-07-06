@@ -3,7 +3,7 @@ const slugify = require('slugify')
 
 exports.createLecture = (req, res) =>{
 //    console.log(req.body)
-    const { courseTitle, courseCode, department, fixedlecturetime} = req.body
+    const { courseTitle, courseCode, department,classtype,school, fixedlecturetime} = req.body
     const slug = slugify(courseCode)
     // validate 
     switch(true){
@@ -33,6 +33,8 @@ exports.createLecture = (req, res) =>{
     courseTitle, 
     courseCode,
     department,
+    school,
+    classtype,
     fixedlecturetime, 
     slug
    },(err, post) =>{
@@ -47,7 +49,7 @@ exports.createLecture = (req, res) =>{
 }
 // get all resource 
 exports.viewsLecture = (req, res) =>{
-    Lecture.find({}).limit(10).sort({createAt: -1}).exec((err, posts) =>{
+    Lecture.find({}).limit(50).sort({createAt: -1}).exec((err, posts) =>{
         if(err) console.log(err);
         res.json(posts)
     })
@@ -56,22 +58,30 @@ exports.viewsLecture = (req, res) =>{
 // get single resource 
 exports.joinLecture = (req, res) => {
     const { slug } = req.params
-    console.log(req.params.slug)
-    const { student, department, reg} = req.body
-    console.log(req.body)
-    Lecture.findOne({slug})
+    // console.log(req.params.slug)
+    const { student, department, reg} = req.body.studentList
+    // console.log(req.body)
+    Lecture.findOneAndUpdate({slug},
+        {
+            student: student,
+            department: department,
+            reg:reg
+        },
+        {
+            upsert:true
+        })
       .exec((err, posts) =>{
         if(err) console.log(err);
         res.json(posts)
     })
-    Lecture.find
+
     
 }
 // update resource
 exports.updateLecture = (req, res) =>{
     const { slug } = req.params;
     const { name,department, reg} = req.body;
-    Post.findOneAndUpdate({slug}, { name,department, reg},{new: true}).exec((err,post) => {
+    Post.findOneAndUpdate({slug}, { name, department, reg},{new: true}).exec((err,post) => {
         if(err) console.log(err)
         res.json(post)
     })
