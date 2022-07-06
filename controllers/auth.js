@@ -10,9 +10,9 @@ we are goin to create registration system using JWT
 */
 //  register route api/registration
 exports.register = asyncHandler (async (req, res) => {
-    const {reg, department, password,acounttype, email,fullname } = req.body
+    const {reg, department, password, acounttype, email, fullname } = req.body
     console.log(req.body)
-    if(!reg || !department || !password || !email || !userType){
+    if(!reg || !department || !password || !email || !acounttype){
         res.status(400).json({
             msg: "Please provide valid credential.."
         })

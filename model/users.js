@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
         require: [true, 'please provide you student registration id']
     },
     fullname:{
-            type: String
+            type:String
     },
     department:{
         type:String
