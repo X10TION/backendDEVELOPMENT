@@ -7,6 +7,6 @@ const { protect } = require('../middleware/authChecker')
 // router.post('/login', login)
 router.post('/register', register)
 router.post('/login', login)
-router.get('/home', protect, profile)
+router.get('/profile', protect, profile)
 
 module.exports = router
