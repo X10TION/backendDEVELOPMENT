@@ -9,6 +9,9 @@ const userSchema = new mongoose.Schema({
         unique: true,
         require: [true, 'please provide you student registration id']
     },
+    fullname:{
+            type: String
+    },
     department:{
         type:String
     },
