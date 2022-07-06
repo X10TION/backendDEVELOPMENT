@@ -3,7 +3,7 @@ const slugify = require('slugify')
 
 exports.createLecture = (req, res) =>{
 //    console.log(req.body)
-    const { courseTitle, courseCode, department,classtype,school, fixedlecturetime} = req.body
+    const { courseTitle,lecturename, reg, courseCode, department,classtype,school, fixedlecturetime} = req.body
     const slug = slugify(courseCode)
     // validate 
     switch(true){
@@ -29,6 +29,8 @@ exports.createLecture = (req, res) =>{
     department,
     school,
     classtype,
+    lecturename,
+    reg,
     fixedlecturetime, 
     slug
    },(err, post) =>{
@@ -52,23 +54,11 @@ exports.viewsLecture = (req, res) =>{
 // get single resource 
 exports.joinLecture = (req, res) => {
     const { slug } = req.params
-    // console.log(req.params.slug)
-    const { student, department, reg} = req.body.studentList
-    // console.log(req.body)
-    Lecture.findOneAndUpdate({slug},
-        {
-            student: student,
-            department: department,
-            reg:reg
-        },
-        {
-            upsert:true
-        })
-      .exec((err, posts) =>{
-        if(err) console.log(err);
-        res.json(posts)
-    })
-
+    const { student, department, reg } = req.body
+    
+    Lecture.findOneAndupdate({slug},
+        {student, department, reg},
+        {upset: true})
     
 }
 // update resource

@@ -2,11 +2,23 @@ const mongoose = require('mongoose')
 const { ObjectId} = mongoose.Schema
 
 const lectureSchema = new mongoose.Schema({
+    lecturename:{
+        type:String
+    },
+    reg:{
+        type: String
+    },
     courseTitle:{
         type: String,
         unique: true,
         min: 7,
         max: 2000
+    },
+    lecturename:{
+        type:String
+    },
+    reg:{
+        type: String
     },
     slug:{
         type: String,
