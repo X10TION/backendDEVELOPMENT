@@ -22,12 +22,6 @@ exports.createLecture = (req, res) =>{
                 msg:"Select the department for student to connect to your class"
             })
             break;
-        case !fixedlecturetime:
-            return res.status(400).json({
-                msg:"Help student know the time for the lectures. Please select time to beging the lecture"
-            })
-            break;
-            
     }
     Lecture.create({
     courseTitle, 
