@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const { ObjectId} = mongoose.Schema
-
+// lecture schems
 const lectureSchema = new mongoose.Schema({
     lecturename:{
         type:String
